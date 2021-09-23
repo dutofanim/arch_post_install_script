@@ -1,428 +1,182 @@
 echo
-echo "INSTALLING SOFTWARE"
+echo "Automated Package Installation - API"
 echo
 
-PKGS=(
-		acpi
-		acpi_call
-		akonadi-calendar-tools
-		akonadiconsole
-		akonadi-import-wizard
-		akregator
-		android-tools
-		ark
-		artikulate
-		audiocd-kio
-		autoconf
-		autofs
-		automake
-		base
-		bind
-		binutils
-		bison
-		blinken
-		bluedevil
-		bluez
-		bluez-libs
-		bluez-utils
-		bomber
-		bovo
-		breeze
-		breeze-gtk
-		btrfs-progs
-		cantor
-		cervisia
-		cmake
-		cronie
-		cups
-		dart
-		dialog
-		discord
-		discover
-		dmidecode
-		dolphin
-		dolphin-plugins
-		dosfstools
-		dragon
-		drkonqi
-		efibootmgr
-		elisa
-		elixir
-		extra-cmake-modules
-		fakeroot
-		ffmpegthumbs
-		filelight
-		firefox-developer-edition
-		firewalld
-		flex
-		gcc
-		git
-		gnome-keyring
-		gperf
-		granatier
-		grantlee-editor
-		groff
-		grub
-		grub-btrfs
-		gvfs-mtp
-		gwenview
-		hplip
-		inetutils
-		intel-ucode
-		itinerary
-		juk
-		k3b
-		kactivitymanagerd
-		kaddressbook
-		kajongg
-		kalarm
-		kalgebra
-		kalzium
-		kamera
-		kamoso
-		kanagram
-		kapman
-		kapptemplate
-		kate
-		katomic
-		kbackup
-		kblackbox
-		kblocks
-		kbounce
-		kbreakout
-		kbruch
-		kcachegrind
-		kcalc
-		kcharselect
-		kcolorchooser
-		kcron
-		kdebugsettings
-		kde-cli-tools
-		kdeconnect
-		kdecoration
-		kde-dev-scripts
-		kde-dev-utils
-		kdegraphics-mobipocket
-		kdegraphics-thumbnailers
-		kde-gtk-config
-		kdenetwork-filesharing
-		kdenlive
-		kdepim-addons
-		kdeplasma-addons
-		kdesdk-kioslaves
-		kdesdk-thumbnailers
-		kdf
-		kdialog
-		kdiamond
-		keditbookmarks
-		kfind
-		kfloppy
-		kfourinline
-		kgamma5
-		kgeography
-		kget
-		kgoldrunner
-		kgpg
-		khangman
-		khelpcenter
-		khotkeys
-		kig
-		kigo
-		killbots
-		kimagemapeditor
-		kinfocenter
-		kio-extras
-		kio-gdrive
-		kipi-plugins
-		kirigami-gallery
-		kiriki
-		kiten
-		kjumpingcube
-		kleopatra
-		klettres
-		klickety
-		klines
-		kmag
-		kmahjongg
-		kmail
-		kmail-account-wizard
-		kmenuedit
-		kmines
-		kmix
-		kmousetool
-		kmouth
-		kmplot
-		knavalbattle
-		knetwalk
-		knights
-		knotes
-		kolf
-		kollision
-		kolourpaint
-		kompare
-		konqueror
-		konquest
-		konsole
-		kontact
-		konversation
-		kopete
-		korganizer
-		kpatience
-		krdc
-		kreversi
-		krfb
-		kross-interpreters
-		kruler
-		kscreen
-		kscreenlocker
-		kshisen
-		ksirk
-		ksnakeduel
-		kspaceduel
-		ksquares
-		ksshaskpass
-		ksudoku
-		ksysguard
-		ksystemlog
-		kteatime
-		ktimer
-		ktorrent
-		ktouch
-		ktuberling
-		kturtle
-		kubrick
-		kvantum-qt5
-		kwalletmanager
-		kwallet-pam
-		kwave
-		kwayland-integration
-		kwayland-server
-		kwin
-		kwordquiz
-		kwrite
-		kwrited
-		latte-dock
-		libkscreen
-		libksysguard
-		libreoffice-fresh
-		libtool
-		linux
-		linux-firmware
-		linux-headers
-		lokalize
-		lskat
-		lvm2
-		m4
-		make
-		marble
-		markdownpart
-		mbox-importer
-		milou
-		minuet
-		mtools
-		neofetch
-		networkmanager
-		network-manager-applet
-		nitrogen
-		nodejs-lts-fermium
-		ntfs-3g
-		nvidia
-		nvidia-dkms
-		nvidia-prime
-		nvidia-settings
-		nvidia-utils
-		obs-studio
-		okular
-		openssh
-		os-prober
-		oxygen
-		p7zip
-		packagekit-qt5
-		palapeli
-		parley
-		partitionmanager
-		patch
-		picmi
-		picom
-		pim-data-exporter
-		pim-sieve-editor
-		piper
-		pkgconf
-		plasma-browser-integration
-		plasma-desktop
-		plasma-disks
-		plasma-integration
-		plasma-nm
-		plasma-pa
-		plasma-sdk
-		plasma-thunderbolt
-		plasma-vault
-		plasma-workspace
-		plasma-workspace-wallpapers
-		polkit-kde-agent
-		powerdevil
-		powertop
-		poxml
-		print-manager
-		pulseaudio-bluetooth
-		pulseaudio-jack
-		python2
-		python2-setuptools
-		python-cffi
-		python-docopt
-		python-numpy
-		python-pyaudio
-		python-websockets
-		qt5-websockets
-		qtkeychain-qt5
-		rclone
-		reflector
-		rocs
-		rsync
-		samba
-		sddm
-		sddm-kcm
-		signal-desktop
-		signon-kwallet-extension
-		snapper
-		spectacle
-		step
-		sudo
-		svgpart
-		sweeper
-		systemsettings
-		telepathy-kde-accounts-kcm
-		telepathy-kde-approver
-		telepathy-kde-auth-handler
-		telepathy-kde-call-ui
-		telepathy-kde-common-internals
-		telepathy-kde-contact-list
-		telepathy-kde-contact-runner
-		telepathy-kde-desktop-applets
-		telepathy-kde-filetransfer-handler
-		telepathy-kde-integration-module
-		telepathy-kde-send-file
-		telepathy-kde-text-ui
-		texinfo
-		thunar
-		tlp
-		ttf-fira-code
-		udisks2
-		umbrello
-		unrar
-		unzip
-		vifm
-		vim
-		wget
-		which
-		wireless_tools
-		wpa_supplicant
-		xdg-desktop-portal-kde
-		xdg-user-dirs
-		xdg-utils
-		xf86-video-intel
-		xf86-video-vesa
-		xorg-bdftopcf
-		xorg-docs
-		xorg-fonts-100dpi
-		xorg-fonts-75dpi
-		xorg-fonts-encodings
-		xorg-font-util
-		xorg-iceauth
-		xorg-mkfontscale
-		xorg-server
-		xorg-server-common
-		xorg-server-devel
-		xorg-server-xephyr
-		xorg-server-xnest
-		xorg-server-xvfb
-		xorg-sessreg
-		xorg-setxkbmap
-		xorg-smproxy
-		xorg-x11perf
-		xorg-xauth
-		xorg-xbacklight
-		xorg-xcmsdb
-		xorg-xcursorgen
-		xorg-xdpyinfo
-		xorg-xdriinfo
-		xorg-xev
-		xorg-xgamma
-		xorg-xhost
-		xorg-xinit
-		xorg-xinput
-		xorg-xkbcomp
-		xorg-xkbevd
-		xorg-xkbutils
-		xorg-xkill
-		xorg-xlsatoms
-		xorg-xlsclients
-		xorg-xmodmap
-		xorg-xpr
-		xorg-xrandr
-		xorg-xrdb
-		xorg-xrefresh
-		xorg-xsetroot
-		xorg-xvinfo
-		xorg-xwayland
-		xorg-xwd
-		xorg-xwininfo
-		xorg-xwud
-		yakuake
-		youtube-dl
-		zeroconf-ioslave
-		zip
-		zsh
-		zsh-completions
-)
+# Arch Linux (post-)install scripts
+# 
+# MIT License
+# 
+# Copyright (c) 2021 dutofanim
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
 
-for PKG in "${PKGS[@]}"; do
-    echo "INSTALLING Package: ${PKG}"
-    sudo pacman -S "$PKG" --noconfirm --needed
-done
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 
-echo
-echo "Done!"
-echo
+currentDir="$(pwd)"
 
-echo
-echo "INSTALLING AUR SOFTWARE"
-echo
+show_error() {
+  echo -e $'\033[1;31m'"$*"$'\033[0m' 1>&2
+}
+show_info() {
+  echo -e $'\033[1;32m'"$*"$'\033[0m'
+}
+show_warning() {
+  echo -e $'\033[1;33m'"$*"$'\033[0m'
+}
+show_question() {
+  echo -e $'\033[1;34m'"$*"$'\033[0m'
+}
+ask_question() {
+  read -r -p $'\033[1;34m'"$* "$'\033[0m' var
+  echo "${var}"
+}
+show_success() {
+  echo -e $'\033[1;35m'"$*"$'\033[0m'
+}
+show_header() {
+  echo -e $'\033[1;36m'"$*"$'\033[0m'
+}
+show_listitem() {
+  echo -e $'\033[1;37m'"$*"$'\033[0m'
+}
 
-AURPKGS=(
-		android-studio
-		brave-bin
-		droidcam
-		electron9
-		gconf
-		google-chrome
-		hyper
-		insync
-		ksnip
-		nvm
-		nwipe
-		ocs-url
-		optimus-manager
-		optimus-manager-qt
-		paru
-		scrcpy
-		slack-desktop
-		snapd
-		snapper-gui-git
-		spotify
-		staruml
-		teamviewer
-		ulauncher
-		v4l2loopback-dc-dkms
-		visual-studio-code-bin
-		zoom
-)
+function check_fail {
+  local exitstatus=${1:-}
+  if [[ ${exitstatus} -gt 0 ]]; then
+    show_error "Error code received. Returning to main."
+    sleep 3s && main
+  fi
+}
 
-for PKG in "${AURPKGS[@]}"; do
-    echo "INSTALLING AUR Package: ${PKG}"
-    sudo paru -S "$PKG" --noconfirm --needed
-done
+function check_installed {
+  while read -r package; do
+    local metacount
+    local installcount
+    metacount=$(pacman -Ss "${package}" | \
+                grep -c "(.*${package}.*)" || true)
+    installcount=$(pacman -Qs "${package}" | \
+                    grep -c "^local.*(.*${package}.*)$" || true)
 
-echo
-echo "Done!"
-echo
+    # Check if package is installed.
+    if pacman -Qi "${package}" >/dev/null 2>&1; then
+      show_listitem "${package} package already installed. Skipping."
+
+    # pacman -Qi won't work with meta packages, so check if all meta package
+    # members are installed instead.
+    elif [[ (${installcount} -eq ${metacount}) \
+            && ! (${installcount} -eq 0) ]]; then
+      show_listitem "${package} meta-package already installed. Skipping."
+
+    # Runs if package is not installed or all members of meta-package are not
+    # installed.
+    else
+      show_listitem "Installing ${package}."
+      sudo pacman -S --noconfirm "${package}"
+    fi
+  done < "${1}"
+}
+
+function check_aur_installed {
+  local pkgbuilddir="${HOME}/.pkgbuild"
+  local aurprefix="https://aur.archlinux.org"
+  local curdir
+  curdir="$(pwd)"
+
+  mkdir -p "${pkgbuilddir}"
+  while read -r package; do
+    local metacount
+    local installcount
+    metacount=$(pacman -Ss "${package}" | \
+                grep -c "(.*${package}.*)" || true)
+    installcount=$(pacman -Qs "${package}" | \
+                    grep -c "^local.*(.*${package}.*)$" || true)
+
+    # Check if package is installed.
+    if pacman -Qi "${package}" >/dev/null 2>&1; then
+      show_listitem "${package} package already installed. Skipping."
+
+    # Runs if package is not installed or all members of meta-package are not
+    # installed.
+    else
+      show_listitem "Installing ${package}."
+      if ! [ -d "${pkgbuilddir}/${package}" ]; then
+        git clone "${aurprefix}/${package}" "${pkgbuilddir}/${package}"
+      else
+        git -C "${pkgbuilddir}/${package}" clean -xdf
+        git -C "${pkgbuilddir}/${package}" reset --hard
+        git -C "${pkgbuilddir}/${package}" pull origin master
+      fi
+      cd "${pkgbuilddir}/${package}" || exit
+      makepkg --noconfirm -si
+      git clean -xdf
+    fi
+  done < "${1}"
+  cd "${curdir}" || exit
+}
+
+apps="$currentDir/packages/apps.list"
+function install_apps {
+  show_header "Installing applications."
+  check_installed "${apps}"
+  check_fail
+  show_success "Done!"
+}
+
+aur="$currentDir/packages/aur.list"
+function install_aur {
+  show_header "Installing AUR applications."
+  check_aur_installed "${aur}"
+  check_fail
+  show_success "Done!"
+}
+
+function packages {
+  show_question "Applications: what do you want to install?"
+  show_info "Main\n ${endbranch}      (Hit ENTER to see options again.)\n"
+
+  local options=(
+    "All" 
+    "Applications"
+    "AUR applications"
+    "Back"
+    )
+  select option in "${options[@]}"; do
+    case $option in
+      "Back")
+        break
+        ;;
+      "All")
+        install_apps
+        install_aur
+        show_info "Main\n ${endbranch} Apps (Hit ENTER to see options again.)"
+        ;;
+      "AUR applications")
+        install_aur
+        show_info "Main\n ${endbranch} Apps (Hit ENTER to see options again.)"
+        ;;
+      "Applications")
+        install_apps
+        show_info "Main\n ${endbranch} Apps (Hit ENTER to see options again.)"
+        ;;
+      *)
+        show_warning "Invalid option."
+        ;;
+    esac
+  done
+}
+
+packages
