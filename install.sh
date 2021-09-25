@@ -1,8 +1,4 @@
-echo
-echo "Automated Package Installation - API"
-echo
-
-# Arch Linux (post-)install scripts
+# Arch Linux post-install script
 # 
 # MIT License
 # 
@@ -25,6 +21,10 @@ echo
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+
+echo
+echo "Automated Package Installation - API"
+echo
 
 currentDir="$(pwd)"
 
