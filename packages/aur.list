@@ -1,5 +1,6 @@
 android-studio
 autofs
+auto-cpufreq
 beekeeper-studio-bin
 binance
 brave-bin
@@ -25,6 +26,7 @@ snapd
 snapper-gui-git
 spotify
 staruml
+system76-power
 teams
 teamviewer
 ulauncher
