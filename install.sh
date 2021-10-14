@@ -23,6 +23,13 @@
 # SOFTWARE.
 
 echo
+echo "Adding necessary keys"
+echo "Add key 8BF0C93D03E44352"
+gpg --recv-keys 8BF0C93D03E44352
+echo "Add key E7677380F54FD8A9"
+gpg --recv-keys E7677380F54FD8A9
+
+echo
 echo "Automated Package Installation - API"
 echo
 
@@ -158,9 +165,9 @@ function packages {
 
   local options=(
     "All" 
-    "Gnome Applications"
-    "KDE Applications"
-    "AUR applications"
+    "Gnome and AUR Applications"
+    "KDE and AUR Applications"
+    "Only AUR applications"
     "Back"
     )
   select option in "${options[@]}"; do
@@ -180,10 +187,12 @@ function packages {
         ;;
       "Gnome Applications")
         install_gdeApps
+        install_aur
         show_info "Main\n ${endbranch} Apps (Hit ENTER to see options again.)"
         ;;
       "KDE Applications")
         install_kdeApps
+        install_aur
         show_info "Main\n ${endbranch} Apps (Hit ENTER to see options again.)"
         ;;
       *)

@@ -650,10 +650,13 @@ nfsidmap
 nftables
 ninja
 nm-connection-editor
+nodejs
+nodejs-nopt
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
 npth
+npm
 nspr
 nss
 nss-mdns
