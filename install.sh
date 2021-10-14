@@ -128,10 +128,18 @@ function check_aur_installed {
   cd "${curdir}" || exit
 }
 
-apps="$currentDir/packages/apps.list"
-function install_apps {
+kdeApps="$currentDir/packages/appsKDE.list"
+function install_kdeApps {
   show_header "Installing applications."
-  check_installed "${apps}"
+  check_installed "${kdeApps}"
+  check_fail
+  show_success "Done!"
+}
+
+gdeApps="$currentDir/packages/appsGDE.list"
+function install_gdeApps {
+  show_header "Installing applications."
+  check_installed "${gdeApps}"
   check_fail
   show_success "Done!"
 }
@@ -150,7 +158,8 @@ function packages {
 
   local options=(
     "All" 
-    "Applications"
+    "Gnome Applications"
+    "KDE Applications"
     "AUR applications"
     "Back"
     )
@@ -160,7 +169,8 @@ function packages {
         break
         ;;
       "All")
-        install_apps
+        install_kdeApps
+        install_gdeApps
         install_aur
         show_info "Main\n ${endbranch} Apps (Hit ENTER to see options again.)"
         ;;
@@ -168,8 +178,12 @@ function packages {
         install_aur
         show_info "Main\n ${endbranch} Apps (Hit ENTER to see options again.)"
         ;;
-      "Applications")
-        install_apps
+      "Gnome Applications")
+        install_gdeApps
+        show_info "Main\n ${endbranch} Apps (Hit ENTER to see options again.)"
+        ;;
+      "KDE Applications")
+        install_kdeApps
         show_info "Main\n ${endbranch} Apps (Hit ENTER to see options again.)"
         ;;
       *)
