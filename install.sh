@@ -25,25 +25,32 @@
 show_error() {
   echo -e $'\033[1;31m'"$*"$'\033[0m' 1>&2
 }
+
 show_info() {
   echo -e $'\033[1;32m'"$*"$'\033[0m'
 }
+
 show_warning() {
   echo -e $'\033[1;33m'"$*"$'\033[0m'
 }
+
 show_question() {
   echo -e $'\033[1;34m'"$*"$'\033[0m'
 }
+
 ask_question() {
   read -r -p $'\033[1;34m'"$* "$'\033[0m' var
   echo "${var}"
 }
+
 show_success() {
   echo -e $'\033[1;35m'"$*"$'\033[0m'
 }
+
 show_header() {
   echo -e $'\033[1;36m'"$*"$'\033[0m'
 }
+
 show_listitem() {
   echo -e $'\033[1;37m'"$*"$'\033[0m'
 }
@@ -122,27 +129,27 @@ function check_aur_installed {
   cd "${curdir}" || exit
 }
 
-function install_kdeApps {
-  show_header "Installing KDE applications."
-  check_installed "${kdeApps}"
-  check_fail
-  show_success "Done!"
-}
-
-function install_gdeApps {
-  show_header "Installing Gnome applications."
-  check_installed "${gdeApps}"
-  check_fail
-  show_success "Done!"
+function install_apps {
+  if [ gdeVar] then
+    show_header "Installing Gnome applications."
+    check_installed "${gdeApps}"
+    check_fail
+    show_success "Done!"
+  elif [ kdeVar] then
+    show_header "Installing KDE applications."
+    check_installed "${kdeApps}"
+    check_fail
+    show_success "Done!"
+  fi
 }
 
 function install_aur {
   show_header "Installing AUR applications."
-  if ${option} = "Gnome and AUR" then
+  if [ gdeVar] then
     check_aur_installed "${aurGDE}"
     check_fail
     show_success "Done!"
-  elif ${option} = "KDE and AUR" then
+  elif [ kdeVar] then
     check_aur_installed "${aurKDE}"
     check_fail
     show_success "Done!"
@@ -164,12 +171,14 @@ function packages {
         break
         ;;
       "Gnome and AUR")
-        install_gdeApps
+        gdeVar= true
+        install_apps
         install_aur
         show_info "Main App\t\t (Hit ENTER to see options again.)\n"
         ;;
       "KDE and AUR")
-        install_kdeApps
+        kdeVar= true
+        install_apps
         install_aur
         show_info "Main App\t\t (Hit ENTER to see options again.)\n"
         ;;
