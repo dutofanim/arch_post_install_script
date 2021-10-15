@@ -130,33 +130,33 @@ function check_aur_installed {
 }
 
 function install_apps {
-  if [ gdeVar ] 
+  if [ $gdeVar = true ] 
     then
       show_header "Installing Gnome applications."
       check_installed "${gdeApps}"
       check_fail
-      show_success "Done!"
-  elif [ kdeVar ] 
+      show_success "Gnome applications successfully installed."
+  elif [ $kdeVar = true ] 
     then
       show_header "Installing KDE applications."
       check_installed "${kdeApps}"
       check_fail
-      show_success "Done!"
+      show_success "KDE applications successfully installed."
   fi
 }
 
 function install_aur {
   show_header "Installing AUR applications."
-  if [ gdeVar ] 
+  if [ $gdeVar = true ] 
     then
       check_aur_installed "${aurGDE}"
       check_fail
-      show_success "Done!"
-  elif [ kdeVar ] 
+      show_success "AUR applications successfully installed."
+  elif [ $kdeVar = true ] 
     then
       check_aur_installed "${aurKDE}"
       check_fail
-      show_success "Done!"
+      show_success "AUR applications successfully installed."
   fi
 }
 
@@ -199,6 +199,8 @@ kdeApps="$currentDir/packages/appsKDE.list"
 gdeApps="$currentDir/packages/appsGDE.list"
 aurGDE="$currentDir/packages/aurGDE.list"
 aurKDE="$currentDir/packages/aurKDE.list"
+gdeVar=false
+kdeVar=false
 
 echo
 show_header "Adding necessary keys"
@@ -206,9 +208,13 @@ echo
 show_header "Add key 8BF0C93D03E44352"
 gpg --recv-keys 8BF0C93D03E44352
 echo
+show_header "Key successfully added."
+echo
 show_header "Add key E7677380F54FD8A9"
 gpg --recv-keys E7677380F54FD8A9
-
+echo
+show_header "Key successfully added."
+echo
 echo
 show_header "Automated Package Installation - API"
 echo
