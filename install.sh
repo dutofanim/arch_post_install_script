@@ -22,19 +22,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-echo
-echo "Adding necessary keys"
-echo "Add key 8BF0C93D03E44352"
-gpg --recv-keys 8BF0C93D03E44352
-echo "Add key E7677380F54FD8A9"
-gpg --recv-keys E7677380F54FD8A9
-
-echo
-echo "Automated Package Installation - API"
-echo
-
-currentDir="$(pwd)"
-
 show_error() {
   echo -e $'\033[1;31m'"$*"$'\033[0m' 1>&2
 }
@@ -135,39 +122,40 @@ function check_aur_installed {
   cd "${curdir}" || exit
 }
 
-kdeApps="$currentDir/packages/appsKDE.list"
 function install_kdeApps {
-  show_header "Installing applications."
+  show_header "Installing KDE applications."
   check_installed "${kdeApps}"
   check_fail
   show_success "Done!"
 }
 
-gdeApps="$currentDir/packages/appsGDE.list"
 function install_gdeApps {
-  show_header "Installing applications."
+  show_header "Installing Gnome applications."
   check_installed "${gdeApps}"
   check_fail
   show_success "Done!"
 }
 
-aur="$currentDir/packages/aur.list"
 function install_aur {
   show_header "Installing AUR applications."
-  check_aur_installed "${aur}"
-  check_fail
-  show_success "Done!"
+  if ${option} = "Gnome and AUR" then
+    check_aur_installed "${aurGDE}"
+    check_fail
+    show_success "Done!"
+  elif ${option} = "KDE and AUR" then
+    check_aur_installed "${aurKDE}"
+    check_fail
+    show_success "Done!"
+  fi
 }
 
 function packages {
   show_question "Applications: what do you want to install?"
-  show_info "Main\n ${endbranch}      (Hit ENTER to see options again.)\n"
+  show_info "Main App\t\t (Hit ENTER to see options again.)\n"
 
   local options=(
-    "All" 
-    "Gnome and AUR Applications"
-    "KDE and AUR Applications"
-    "Only AUR applications"
+    "Gnome and AUR"
+    "KDE and AUR"
     "Back"
     )
   select option in "${options[@]}"; do
@@ -175,25 +163,15 @@ function packages {
       "Back")
         break
         ;;
-      "All")
-        install_kdeApps
+      "Gnome and AUR")
         install_gdeApps
         install_aur
-        show_info "Main\n ${endbranch} Apps (Hit ENTER to see options again.)"
+        show_info "Main App\t\t (Hit ENTER to see options again.)\n"
         ;;
-      "AUR applications")
-        install_aur
-        show_info "Main\n ${endbranch} Apps (Hit ENTER to see options again.)"
-        ;;
-      "Gnome and AUR Applications")
-        install_gdeApps
-        install_aur
-        show_info "Main\n ${endbranch} Apps (Hit ENTER to see options again.)"
-        ;;
-      "KDE and AUR Applications")
+      "KDE and AUR")
         install_kdeApps
         install_aur
-        show_info "Main\n ${endbranch} Apps (Hit ENTER to see options again.)"
+        show_info "Main App\t\t (Hit ENTER to see options again.)\n"
         ;;
       *)
         show_warning "Invalid option."
@@ -201,5 +179,25 @@ function packages {
     esac
   done
 }
+
+# Variables definition
+currentDir="$(pwd)"
+kdeApps="$currentDir/packages/appsKDE.list"
+gdeApps="$currentDir/packages/appsGDE.list"
+aurGDE="$currentDir/packages/aurGDE.list"
+aurKDE="$currentDir/packages/aurKDE.list"
+
+echo
+show_header "Adding necessary keys"
+echo
+show_header "Add key 8BF0C93D03E44352"
+gpg --recv-keys 8BF0C93D03E44352
+echo
+show_header "Add key E7677380F54FD8A9"
+gpg --recv-keys E7677380F54FD8A9
+
+echo
+show_header "Automated Package Installation - API"
+echo
 
 packages
