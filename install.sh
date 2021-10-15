@@ -130,29 +130,33 @@ function check_aur_installed {
 }
 
 function install_apps {
-  if [ gdeVar] then
-    show_header "Installing Gnome applications."
-    check_installed "${gdeApps}"
-    check_fail
-    show_success "Done!"
-  elif [ kdeVar] then
-    show_header "Installing KDE applications."
-    check_installed "${kdeApps}"
-    check_fail
-    show_success "Done!"
+  if [ gdeVar ] 
+    then
+      show_header "Installing Gnome applications."
+      check_installed "${gdeApps}"
+      check_fail
+      show_success "Done!"
+  elif [ kdeVar ] 
+    then
+      show_header "Installing KDE applications."
+      check_installed "${kdeApps}"
+      check_fail
+      show_success "Done!"
   fi
 }
 
 function install_aur {
   show_header "Installing AUR applications."
-  if [ gdeVar] then
-    check_aur_installed "${aurGDE}"
-    check_fail
-    show_success "Done!"
-  elif [ kdeVar] then
-    check_aur_installed "${aurKDE}"
-    check_fail
-    show_success "Done!"
+  if [ gdeVar ] 
+    then
+      check_aur_installed "${aurGDE}"
+      check_fail
+      show_success "Done!"
+  elif [ kdeVar ] 
+    then
+      check_aur_installed "${aurKDE}"
+      check_fail
+      show_success "Done!"
   fi
 }
 
@@ -171,13 +175,13 @@ function packages {
         break
         ;;
       "Gnome and AUR")
-        gdeVar= true
+        gdeVar=true
         install_apps
         install_aur
         show_info "Main App\t\t (Hit ENTER to see options again.)\n"
         ;;
       "KDE and AUR")
-        kdeVar= true
+        kdeVar=true
         install_apps
         install_aur
         show_info "Main App\t\t (Hit ENTER to see options again.)\n"
