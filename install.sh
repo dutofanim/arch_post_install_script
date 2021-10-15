@@ -185,12 +185,12 @@ function packages {
         install_aur
         show_info "Main\n ${endbranch} Apps (Hit ENTER to see options again.)"
         ;;
-      "Gnome Applications")
+      "Gnome and AUR Applications")
         install_gdeApps
         install_aur
         show_info "Main\n ${endbranch} Apps (Hit ENTER to see options again.)"
         ;;
-      "KDE Applications")
+      "KDE and AUR Applications")
         install_kdeApps
         install_aur
         show_info "Main\n ${endbranch} Apps (Hit ENTER to see options again.)"
