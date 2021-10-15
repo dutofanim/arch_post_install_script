@@ -55,6 +55,14 @@ show_listitem() {
   echo -e $'\033[1;37m'"$*"$'\033[0m'
 }
 
+function check_user {
+  show_header "Checking if user is root"
+  if [ ${EUID} -eq 0 ]; then
+    show_error "Don't run this script as root. Exiting."
+    exit 1
+  fi
+}
+
 function check_fail {
   local exitstatus=${1:-}
   if [[ ${exitstatus} -gt 0 ]]; then
@@ -161,7 +169,7 @@ function install_aur {
 }
 
 function packages {
-  show_question "Applications: what do you want to install?"
+  show_question "Applications: what do you want to install?\n"
   show_info "Main App\t\t (Hit ENTER to see options again.)\n"
 
   local options=(
@@ -207,16 +215,16 @@ show_header "Adding necessary keys"
 echo
 show_header "Add key 8BF0C93D03E44352"
 gpg --recv-keys 8BF0C93D03E44352
-echo
 show_header "Key successfully added."
 echo
 show_header "Add key E7677380F54FD8A9"
 gpg --recv-keys E7677380F54FD8A9
-echo
 show_header "Key successfully added."
 echo
 echo
 show_header "Automated Package Installation - API"
 echo
 
+# Functions calls
+check_user
 packages
