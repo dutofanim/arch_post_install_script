@@ -58,7 +58,7 @@ show_listitem() {
 function check_user {
   show_header "Checking if user is root"
   if [ ${EUID} -eq 0 ]; then
-    show_error "Don't run this script as root. Exiting."
+    show_error "Root user detected. Don't run this script as root. Exiting."
     exit 1
   fi
 }
