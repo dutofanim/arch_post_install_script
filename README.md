@@ -37,6 +37,6 @@ Main App         (Hit ENTER to see options again.)
 3) "Back"
 ```
 
-Choose your favorite **Desktop environment** and all the applications will be installed. ***You can modify the applications list to include or exclude any package*** in the correspondent file. This script needs to be run with normal user privileges. You will be warmed if try to run this script with root privileges and the script will be interrupted.
+Choose your favorite **Desktop** and all apps will be installed. ***You can modify the application list to include or exclude any package*** in the corresponding file. This script needs to be run with normal user privileges. You will be warned if you try to run with root privileges and the script will be stopped.
 
-## Based on [Sudorook script](https://github.com/sudorook/archlinux)
+## Based on [Sudorook archlinux script](https://github.com/sudorook/archlinux)
