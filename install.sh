@@ -176,7 +176,10 @@ function packages {
     "Gnome and AUR"
     "KDE and AUR"
     "Back"
-    )
+  )
+
+  clear
+  PS3='Select one option: '
   select option in "${options[@]}"; do
     case $option in
       "Back")
